@@ -927,12 +927,12 @@
         }
       },
       "links": {},
-      "address": "0x47ea7f1E0dF97D77D64Ae48BE630796806Ff79c8",
-      "transactionHash": "0x51ba112ee9542ffac10a0d50c92e89b2862175972eb6752e350d9482c09e4879"
+      "address": "0xbB372147A5E88d390cbc52E62B8d77fd18dF1534",
+      "transactionHash": "0xf66234da245f0a763ef6dcacba5a316de494cbf8a5b673f186cf00722dc19a76"
     }
   },
   "schemaVersion": "3.2.0",
-  "updatedAt": "2020-06-13T13:27:37.677Z",
+  "updatedAt": "2020-06-15T13:45:49.283Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {
