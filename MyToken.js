@@ -296,30 +296,63 @@ var SimpleCoinContractFactory = web3.eth.contract([
     var accounts = web3.eth.accounts;
 
     //    2 Reports an updated account balance
-
     function refreshAccountsTable() {                                
         var innerHtml = 
      //    3 Builds the HTML account balance table dynamically
-            "<tr><td>Account</td><td>Balance</td>";                
+            "<tr><td>Account</td><td>Balance</td><td>Symbol</td><td>Smart contract</td>";                
    
 
     //4 All accounts are iterated to build the account balance HTML.
 
          for (var i = 0; i < accounts.length; i++) {                 
                var account = accounts[i];
-    //            var balance = 
-    //                simpleCoinContractInstance
+              var balance = 
+                  simpleCoinContractInstance
     // 5 Calls the coin balance getter
-
-      //               .totalSupply(account);                          
+                   .balanceOf(account); 
+                var symbols = simpleCoinContractInstance.symbol();
+                var smartbalance = simpleCoinContractInstance.address;
+                                       
                innerHtml = innerHtml + 
                "<tr><td>" + 
-                 account + "</td><td>" 
+                 account + 
+              "</td><td>" + 
+              balance + 
+              "</td><td>" + 
+              symbols +
+              "</td><td>" +
+              smartbalance
+             
+             
                   ;
          }
          
          $("#accountsBalanceTable").html(innerHtml);
    }
+
+   function amounts() {                                
+    var innerHtml = 
+ //    3 Builds the HTML account balance table dynamically
+        "<tr><td>Address</td><td></td><td>Balance</td>";                
+          {    
+            var walletaddress = $("#account").val();   
+            var symbols = simpleCoinContractInstance.symbol();                  
+            var balances = simpleCoinContractInstance.balanceOf(walletaddress);
+            innerHtml = innerHtml + 
+           "<tr><td>" + 
+             walletaddress + "</td><td>" + "</td><td>" + balances + symbols;
+         
+         
+              ;
+     }
+     
+     $("#amounts").html(innerHtml);
+}
+
+
+//
+
+ 
 //    6 Gets the input from the UI and feeds it to the coin transfer contract function
    
     function transferCoins() {                                       
@@ -342,6 +375,50 @@ var SimpleCoinContractFactory = web3.eth.contract([
             }
          );
     }
+//Allownce Function
+function allownces() {                                       
+  var owner = $("#owneraddress").val();
+  var spender = $("#spenderaddress").val();
+ 
+//    7 Invokes the coin transfer contract function
+
+  simpleCoinContractInstance.allowance(                        
+     spender, 
+       {from:owner,gas:200000},
+     
+     function(error, result){
+        if(!error)
+//    8 The callback associated with a successful transfer refreshes the account balance table.
+
+           refreshAccountsTable();                            
+        else
+           console.error(error);
+     }
+  );
+}
+
+//Approve
+function approval() {                                       
+  var spender = $("#spenderaddress").val();
+  
+  var tokensToTransfer = $("#amount").val();
+//    7 Invokes the coin transfer contract function
+
+  simpleCoinContractInstance.approve(                        
+     spender, 
+     tokensToTransfer, 
+     
+     function(error, result){
+        if(!error)
+//    8 The callback associated with a successful transfer refreshes the account balance table.
+
+           refreshAccountsTable();                            
+        else
+           console.error(error);
+     }
+  );
+}
+
 //    9 Renders the account balance table on opening the page
     $( document ).ready(function() {                                 
          refreshAccountsTable();

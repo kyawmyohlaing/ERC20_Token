@@ -6,15 +6,18 @@
        <script src="./MyToken.js"></script>
     </head>
     <body>
+      
        <table>
           <tr><b>SimpleCoin</b></tr>
            <tr>
                <table border="0" cellpadding="0" width="200"
                 id='accountsBalanceTable'> 
                 </table>
-            </tr>
+      </table>
            <tr/>
+
            <tr/>
+
            <tr>Transfer coins</tr>
            <tr>
                 <table border="0" cellpadding="0" width="200" id='transferCoins'> 
@@ -26,6 +29,41 @@
                    </tr>
                 </table>
            </tr>
+
+           <tr>Check Balance</tr>
+           <tr>
+                <table border="0" cellpadding="0" width="200" id='amounts'> 
+                   <tr>
+                     <td>Account:</td><td><input type="text" id="account" width="400"/></td>
+                     <td><button onclick="amounts()">Check Balance</button></td>
+                   </tr>
+                </table>
+           </tr>
+
+           <tr>Allownce</tr>
+           <tr>
+                <table border="0" cellpadding="0" width="200" id='allownces'> 
+                   <tr>
+                     <td>Owner:</td><td><input type="text" id="owneraddress" width="400"/></td>
+                     <td>Spender:</td><td><input type="text" id="spenderaddress" width="400"/></td>
+                    
+                     <td><button onclick="allownces()">Request Allownce</button></td>
+                   </tr>
+                </table>
+           </tr>
+
+           <tr>Approve</tr>
+           <tr>
+                <table border="0" cellpadding="0" width="200" id='approveal'> 
+                   <tr>
+                     
+                     <td>Spender:</td><td><input type="text" id="spenderaddress" width="400"/></td>
+                     <td>Amount:</td><td><input type="text" id="amount" /></td>
+                     <td><button onclick="approval()">Request Amount</button></td>
+                   </tr>
+                </table>
+           </tr>
+
        </table>
     </body>
     </html>
